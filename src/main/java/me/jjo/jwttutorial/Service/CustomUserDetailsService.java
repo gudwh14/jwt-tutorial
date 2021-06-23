@@ -2,6 +2,9 @@ package me.jjo.jwttutorial.Service;
 
 import me.jjo.jwttutorial.Entity.User;
 import me.jjo.jwttutorial.Repository.UserRepository;
+import me.jjo.jwttutorial.Util.SecurityUtil;
+import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +19,8 @@ import java.util.stream.Collectors;
 @Component("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(SecurityUtil.class);
+
 
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -36,6 +41,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getAuthorityName()))
                 .collect(Collectors.toList());
+
+        logger.debug("UserDetails 정보 : {} {}",username ,user.toString());
         return new org.springframework.security.core.userdetails.User(user.getUserName(),
                 user.getPassword(),
                 grantedAuthorities);

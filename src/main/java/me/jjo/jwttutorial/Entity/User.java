@@ -13,6 +13,7 @@ import java.util.Set;
 @Builder // 빌더 생성자 자동으로 생성
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User {
 
     @JsonIgnore
