@@ -1,3 +1,6 @@
+![](https://user-images.githubusercontent.com/37062292/123032299-ac518e00-d420-11eb-8641-f2ba8c28ca59.png)
+
+
 ## 로그인 과정 정리
 
 1. 클라이언트 사용자가 로그인 요청 (HTTP Request)
